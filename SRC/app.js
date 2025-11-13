@@ -14,7 +14,7 @@ const app = express();
 //Settings
 app.set("port",process.env.PORT||3000);
 app.set("view engine","ejs");
-app.set("views","./src/views");
+app.set("views","./SRC/views");
 
 
 //Middlewares
