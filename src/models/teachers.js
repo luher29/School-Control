@@ -19,4 +19,4 @@ const teacherSchema = new Schema({
     timestamps: true,
     versionKey: false
 });
-export default model('teachers',teacherSchema);
+export default model('teacher',teacherSchema);
