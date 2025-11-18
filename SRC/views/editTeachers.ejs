@@ -105,7 +105,10 @@
           <!--Aqui va el formulario-->
           <div class="card">
             <div class="card-body">
-              <form action="/api/teachers/updateOne/<%= teacher.teacher_id %>" method="POST">
+              <form
+                action="/api/teachers/updateOne/<%= teacher.teacher_id %>"
+                method="POST"
+              >
                 <div class="row">
                   <div class="col-lg-6">
                     <label for="txtTeacherId" class="form-label"
@@ -146,7 +149,7 @@
                   <div class="col-lg-6">
                     <label for="txtAge" class="form-label">Edad</label>
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
                       id="txtAge"
                       name="age"
@@ -168,29 +171,30 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="txtArea
-                      name="average"
-                      value="<%= teacher.average %>"
+                      id="txtArea"
+                      name="area"
+                      value="<%= teacher.area %>"
                     />
-                     </div>
-                     <div class="col-lg-6">
+                  </div>
+                  <div class="col-lg-6">
                     <label for="txtSalary" class="form-label">Salario</label>
                     <input
                       type="text"
                       class="form-control"
                       id="txtSalary"
-                      name="email"
+                      name="salary"
                       value="<%= teacher.salary %>"
                     />
                   </div>
                   <div class="col-lg-6">
-                    <label for="txtYearsService" class="form-label">Años de Servicio</label>
+                    <label for="txtYearsService" class="form-label"
+                      >Años de Servicio</label>
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
                       id="txtYearsService"
-                      name="yearsofservice"
-                      value="<%= teacher.yearsofservice %>"
+                      name="years_of_service"
+                      value="<%= teacher.years_of_service %>"
                     />
                   </div>
                 </div>

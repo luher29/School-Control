@@ -11,17 +11,17 @@ teacherDaos.getAll = async () =>{
 }
 //metodo que tiene que devolver un estudiante por su id
 teacherDaos.getOne = async (teacher_id) =>{
-   const teachers = await Students.findOne({teacher_id: teacher_id});
+   const teachers = await Teachers.findOne({teacher_id: teacher_id});
    return teachers;
 };
 
 teacherDaos.insertOne = async (teacherData) =>{
-   const newTeacher = await new Teachers(teacherData);
-   return newTeacher;
+   const teacher = await Teachers.create(teacherData);
+   return teacher;
 };
 
 teacherDaos.updateOne = async (teacher_id, updateData) => {
-   const updatedTeacher = await Tea.findOneAndUpdate({
+   const updatedTeacher = await Teachers.findOneAndUpdate({
       teacher_id: teacher_id},
       updateData
    );

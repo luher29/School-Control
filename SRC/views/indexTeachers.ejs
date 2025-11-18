@@ -190,7 +190,7 @@
                       type="text"
                       class="form-control"
                       id="txtYearsService"
-                      name="yearsofservice"
+                      name="years_of_service"
                     />
                   </div>
                 </div>
@@ -231,14 +231,14 @@
                   <td><%= teacher.email %></td>
                   <td><%= teacher.area %></td>
                   <td><%= teacher.salary %></td>
-                  <td><%= teacher.yearsofservice %></td>
+                  <td><%= teacher.years_of_service %></td>
                   <td>
                     <a href="/api/teachers/getOne/<%= teacher.teacher_id %>" class="btn btn-warning">
                       <i class="material-icons">edit </i>
                     </a>
                   </td>
                   <td>
-                    <a href="/api/teachers/deleteOne/<%= teacher_id %>" class="btn btn-danger">
+                    <a href="/api/teachers/deleteOne/<%= teacher.teacher_id %>" class="btn btn-danger">
                       <i class="material-icons">delete </i>
                     </a>
                   </td>
