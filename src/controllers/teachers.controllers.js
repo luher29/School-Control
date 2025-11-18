@@ -5,7 +5,7 @@ teachersControllers.getAll = (req,res) =>{
 teacherDaos.getAll()
     .then(teachers => {
         res.render( "indexTeachers.ejs", {teachers: teachers} );
-    })
+    }) 
     .catch(err => {
     res.status(500).json({
         message:"An error has occurred",
