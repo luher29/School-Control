@@ -1,13 +1,10 @@
-import teachersDaos from "../DAOs/teachers.daos.js";
-
+import teacherDaos from "../DAOs/teachers.daos.js";
 const teachersControllers = {};
-
-teachersControllers.getAll = (req, res) => {
-    teachersDaos.getAll()
-    .then(teachersList => {
-        res.json({
-            data:teachersList
-        })
+teachersControllers.getAll = (req,res) =>{
+//aqui le vamos a pedir los datos de los estudiantes al dao
+teacherDaos.getAll()
+    .then(teachers => {
+        res.render( "indexTeachers.ejs", {teachers: teachers} );
     })
     .catch(err => {
     res.status(500).json({
@@ -15,15 +12,16 @@ teachersControllers.getAll = (req, res) => {
         error: err
     });
 });
-}
+//aqui vamos a responder al cliente
+};
 teachersControllers.getOne =(req,res)=>{
-    teachersDaos.getOne(req.params.teacher_id)
-    .then((teachers)=>{
-        if(teachers){
-           res.json({data:teachers }); 
+    teacherDaos.getOne(req.params.teacher_id)
+    .then((teacher)=>{
+        if(teacher){
+        res.render("editTeachers.ejs",{teacher: teacher});
         }else{
             res.status(404).json({
-                message:"Student not found"
+                message:"Teacher not found"
             });
         }
     })
@@ -34,31 +32,24 @@ teachersControllers.getOne =(req,res)=>{
         });
     });
 };
-
 teachersControllers.insertOne =async (req,res)=>{
-    teachersDaos.insertOne(req.body)
+    teacherDaos.insertOne(req.body)
     .then((newTeacher)=>{
-        res.status(201).json({
-            message:"Student created successfully",
-            data: newTeacher
-        });
+        res.redirect("/api/teachers/getAll");
     })
     .catch(err=>{
         res.status(500).json({ message:"An error has occurred"});
     });
 };
 
-teachersControllers  .updateOne = async (req, res) => {
-    teachersDaos.updateOne(req.params.teacher_id, req.body)
+teachersControllers.updateOne = async (req, res) => {
+    teacherDaos.updateOne(req.params.teacher_id, req.body)
     .then((updatedTeacher) => {
         if (updatedTeacher) {
-            res.json({
-                message: "Student updated successfully",
-                data: updatedTeacher
-            });
+        res.redirect("/api/teachers/getAll");
         } else {
             res.status(404).json({
-                message: "Student not found"
+                message: "Teacher not found"
             });
         }
     })
@@ -71,13 +62,10 @@ teachersControllers  .updateOne = async (req, res) => {
 };
 
 teachersControllers.deleteOne = async (req, res) => {
-    teachersDaos.deleteOne(req.params.teacher_id)
-        .then((deletedTeachers) => {
-            if (deletedTeachers) {
-                res.json({
-                    message: "Student deleted successfully",
-                    data: deletedTeachers
-                });
+    teacherDaos.deleteOne(req.params.teacher_id)
+        .then((deletedTeacher) => {
+            if (deletedTeacher) {
+                 res.redirect("/api/teachers/getAll");
             } else {
                 res.status(404).json({
                     message: "Student not found"
@@ -93,5 +81,8 @@ teachersControllers.deleteOne = async (req, res) => {
     
 };
 
-export default teachersControllers;
+                                        
 
+        
+export default teachersControllers;
+    

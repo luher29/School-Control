@@ -20,11 +20,11 @@ studentsDaos.insertOne = async (studentData) =>{
 };
 
 studentsDaos.updateOne = async (student_id, updateData) => {
-  const updatedStudent = await Students.findOneAndUpdate(
-  {student_id: student_id},
-  updateData
-  );
-  return updatedStudent;
+   const updatedStudent = await Students.findOneAndUpdate({
+      student_id: student_id},
+      updateData
+   );
+   return updatedStudent;
 };  
 
 studentsDaos.deleteOne = async (student_id) => {

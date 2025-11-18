@@ -1,38 +1,39 @@
-import teachers from  '../models/teachers.js';
+import Teachers from "../models/Teachers.js";
 
-const teachersDaos = {};
+const teacherDaos = {};
+//metodo que tiene que devolver todos los estudiantes
+teacherDaos.getAll = async () =>{
+   //aqui le voy a pedir paro al modelo de mongoose
+   //para extraer los estudiantes de mi cluster
+   const teachers = await Teachers.find();
+   return teachers;
 
-teachersDaos.getAll = async () => {
-    const allteachers = await teachers.find();
-    return allteachers;
+}
+//metodo que tiene que devolver un estudiante por su id
+teacherDaos.getOne = async (teacher_id) =>{
+   const teachers = await Students.findOne({teacher_id: teacher_id});
+   return teachers;
 };
 
-teachersDaos.getOne = async (teacher_id) => {
-
-    const teacherData = await teachers.findOne({teacher_id: teacher_id})
-    return teacherData;
+teacherDaos.insertOne = async (teacherData) =>{
+   const newTeacher = await new Teachers(teacherData);
+   return newTeacher;
 };
 
-teachersDaos.insertOne = async (teacherData) => {
-    const newTeacher = await new teachers(teacherData).save();
-    return newTeacher;
+teacherDaos.updateOne = async (teacher_id, updateData) => {
+   const updatedTeacher = await Tea.findOneAndUpdate({
+      teacher_id: teacher_id},
+      updateData
+   );
+   return updatedTeacher;
+};  
 
+teacherDaos.deleteOne = async (teacher_id) => {
+   const deletedTeacher = await Teachers.findOneAndDelete({teacher_id: teacher_id});
+   return deletedTeacher;
 }
 
-teachersDaos.updateOne = async (teacher_id, updateData) => {
-    const updatedTeacher = await teachers.findOneAndUpdate(
-        {teacher_id: teacher_id},
-        updateData
-    );
-    return updatedTeacher;
-}
 
-teachersDaos.deleteOne = async (teacher_id) => {
+export default teacherDaos;
 
-    const deletedTeacher = await teachers.findOneAndDelete(
-        {teacher_id: teacher_id}
-    );
-    return deletedTeacher;
-}
 
-export default teachersDaos
